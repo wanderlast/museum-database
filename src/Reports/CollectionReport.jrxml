@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c4c8a69-aee4-4d7f-9cbf-df7a3bae3934">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<subDataset name="dataset1" uuid="6cf2cf42-107f-4a09-805b-827e4260f4fd"/>
+	<subDataset name="CollectionSummaryDataSet" uuid="eded26cf-97f5-41c2-aafb-ae58a01571a7">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     COUNT(LLRP_COLLECTION."COLLECTID") AS "Total Items"
+FROM
+     "CS342"."LLRP_COLLECTION" LLRP_COLLECTION]]>
+		</queryString>
+		<field name="Total Items" class="java.math.BigDecimal"/>
+		<group name="Total Items">
+			<groupExpression><![CDATA[$F{Total Items}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="dataset2" uuid="2d8038b6-232f-462f-b5e2-034b6604775d"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Defenestrate\\Documents\\NetBeansProjects\\MuseumDB\\src\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     COUNT(C."COLLECTID") AS "Total # of Items",
+     MIN(C."YEAROFORIGIN") AS "Oldest Item - Year",
+     MAX(C."YEAROFORIGIN") AS "Youngest Item - Year"
+FROM
+     "CS342"."LLRP_COLLECTION" C]]>
+	</queryString>
+	<field name="Total # of Items" class="java.math.BigDecimal"/>
+	<field name="Oldest Item - Year" class="java.math.BigDecimal"/>
+	<field name="Youngest Item - Year" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="112" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="117" y="44" width="263" height="33" uuid="9e339e9a-f5e1-48d8-9bac-a861eab8b59c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Collection Summary]]></text>
+			</staticText>
+			<image>
+				<reportElement x="16" y="13" width="88" height="86" uuid="007c55ff-6d3c-4708-8a88-9b2e49a680d5"/>
+				<imageExpression><![CDATA["C:\\Users\\Defenestrate\\Pictures\\homestead\\6b26d69f2391ea00b9465f7c750cf5a5.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="117" y="77" width="369" height="22" uuid="f10e1d86-4e40-4529-b046-099196d7c3cd"/>
+				<text><![CDATA[State of the Homestead Museum's Collection]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="d5fb4f96-0e12-4775-818f-866d98ce9745"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="477" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="024df879-30c4-40d2-9727-dc5eeb40fd51"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="">
+				<reportElement x="269" y="16" width="244" height="50" uuid="494243f4-008f-46df-a2d1-9a23c02f6b21"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total # of Items} + " items"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="16" width="209" height="49" uuid="d3d84be4-b101-40a9-896f-90fce5c6cf57"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Total # of Items in Collection:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="65" width="209" height="51" uuid="847116fa-5aff-41fe-bce2-cc37774c0ca8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Date Range of Items:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="269" y="65" width="244" height="52" uuid="6aaf4127-f03c-4e8e-8ce2-4503d562bdb0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Oldest Item - Year} + " - " + $F{Youngest Item - Year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="264" width="244" height="48" uuid="717fe48d-ce4f-4b42-9daa-627ee72fd831"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="264" width="209" height="48" uuid="2deebb3c-bf7f-4f2f-9381-80afa7397932"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Oldest Item:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="228" width="209" height="36" uuid="af18e718-e901-42fe-8cdc-cbcdc2fef524"/>
+				<textElement>
+					<font fontName="Serif" size="24"/>
+				</textElement>
+				<text><![CDATA[Trivia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="312" width="209" height="48" uuid="a9f93481-c1cd-4e93-b1e7-3fefae6ba618"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Youngest Item:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="269" y="312" width="244" height="48" uuid="6d4c0326-a5a7-461e-ac53-b26c8f8fd946"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement x="269" y="117" width="244" height="51" uuid="2299990f-77b7-41c3-a87c-2ac861dce132"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="117" width="209" height="51" uuid="af121bbf-5a94-4546-b39f-86bf5a78c1f0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Average Value of Items]]></text>
+			</staticText>
+			<subreport isUsingCache="true">
+				<reportElement x="36" y="360" width="209" height="51" isRemoveLineWhenBlank="true" uuid="d4e34f10-5362-4686-b56a-621f1a93429e"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CollectionReport_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="16434048-4de8-4177-9be0-1f654059546d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="426a4c75-ce35-42c3-96e8-2bc3b38d9af3"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="f6483cae-e1fb-49ca-b76a-ab02779912fd"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b3125e61-a1f5-4fb7-b625-e4a2c45ed2ef"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

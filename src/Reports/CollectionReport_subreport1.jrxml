@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CollectionReport_subreport1" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1bdf6544-8b42-45eb-9a51-6ac23df66c05">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     LLRP_COLLECTION."NAME" AS LATEST_ACQUISITION,
+     TO_CHAR(LLRP_GAINS_AN."DATEACQUIRED", 'yyyy/mm/dd') AS LATEST_ACQUISITION_DATE
+FROM "CS342"."LLRP_ACQUISITION" LLRP_ACQUISITION INNER JOIN "CS342"."LLRP_GAINS_AN" LLRP_GAINS_AN ON LLRP_ACQUISITION."ACQUIREID" = LLRP_GAINS_AN."ACQUIREID"
+     INNER JOIN "CS342"."LLRP_COLLECTION" LLRP_COLLECTION ON LLRP_GAINS_AN."COLLECTID" = LLRP_COLLECTION."COLLECTID"
+WHERE LLRP_GAINS_AN."DATEACQUIRED" = (SELECT MAX(LLRP_GAINS_AN."DATEACQUIRED") AS LATEST_DATE FROM "CS342"."LLRP_GAINS_AN")]]>
+	</queryString>
+	<field name="LATEST_ACQUISITION" class="java.lang.String"/>
+	<field name="LATEST_ACQUISITION_DATE" class="java.lang.String"/>
+	<group name="LLRP_COLLECTION_NAME">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="167" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="224" height="83" uuid="bd707df1-f036-49bb-a197-6f034afd46c4"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Latest Acquisition:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="235" y="0" width="256" height="83" uuid="a72f4d7f-5d15-4789-ad26-c297ae46a64d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LATEST_ACQUISITION} + " gained on " + 
+$F{LATEST_ACQUISITION_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
