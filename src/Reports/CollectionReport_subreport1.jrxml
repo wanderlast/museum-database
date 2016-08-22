@@ -20,7 +20,7 @@ WHERE LLRP_GAINS_AN."DATEACQUIRED" = (SELECT MAX(LLRP_GAINS_AN."DATEACQUIRED") A
 		<band splitType="Stretch"/>
 	</background>
 	<summary>
-		<band height="167" splitType="Stretch">
+		<band height="93" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="224" height="83" uuid="bd707df1-f036-49bb-a197-6f034afd46c4"/>
 				<textElement>

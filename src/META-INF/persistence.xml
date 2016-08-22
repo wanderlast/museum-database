@@ -5,6 +5,8 @@
     <class>MuseumGUI.LlrpCollection</class>
     <class>MuseumGUI.LlrpMaintenance</class>
     <class>MuseumGUI.LlrpContributor</class>
+    <class>MuseumGUI.AuthGroup</class>
+    <class>MuseumGUI.LlrpWorker</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01"/>
       <property name="javax.persistence.jdbc.user" value="cs342"/>

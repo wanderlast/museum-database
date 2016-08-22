@@ -22,13 +22,18 @@ import java.sql.DriverManager;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-
+import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
-    /** 
+
+    /**
      * Creates new form MuseumDBGUI
      */
-    
+    String savedID;
+    int savedCID;
+
     public MuseumDB() {
         OracleConnection.connectToDatabase();
         initComponents();
@@ -44,7 +49,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         InsertCollectionDialog = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
@@ -61,14 +65,50 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         jLabel11 = new javax.swing.JLabel();
         creatorField = new javax.swing.JTextField();
         materialField = new javax.swing.JTextField();
+        addWorkerDialog = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        staffRadio = new javax.swing.JRadioButton();
+        volunteerRadio = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        createWorkerButton = new javax.swing.JButton();
+        ssnField = new javax.swing.JFormattedTextField();
+        fNameField = new javax.swing.JTextField();
+        lNameField = new javax.swing.JTextField();
+        street2Field = new javax.swing.JTextField();
+        streetField = new javax.swing.JTextField();
+        cityField = new javax.swing.JTextField();
+        zipField = new javax.swing.JTextField();
+        ageField = new javax.swing.JTextField();
+        maleRadio = new javax.swing.JRadioButton();
+        femaleRadio = new javax.swing.JRadioButton();
+        mNameField = new javax.swing.JTextField();
         Contributor = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         contributorTable = new javax.swing.JTable();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        newContributor = new javax.swing.JButton();
+        useContributor = new javax.swing.JButton();
+        MaintDialog = new javax.swing.JDialog();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        workerCombo = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        maintReasonCombo = new javax.swing.JComboBox<>();
+        addMaintRecordButton = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        maintStartField = new javax.swing.JFormattedTextField();
+        maintEndField = new javax.swing.JFormattedTextField();
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("jdbc:oracle:thin:@delphi.cs.csubak.edu:1521:dbs01PU").createEntityManager();
         llrpCollectionQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT L FROM LlrpCollection L");
         llrpCollectionList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : llrpCollectionQuery.getResultList();
@@ -78,13 +118,53 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         llrpMaintenanceList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : llrpMaintenanceQuery.getResultList();
         llrpContributorQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT l FROM LlrpContributor l");
         llrpContributorList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : llrpContributorQuery.getResultList();
-        MaintDialog = new javax.swing.JDialog();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        workerCombo = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        maintReasonCombo = new javax.swing.JComboBox<>();
-        addMaintRecordButton = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        AcquisitionDialog = new javax.swing.JDialog();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        estValueField = new javax.swing.JTextField();
+        priceField = new javax.swing.JTextField();
+        acquireButton = new javax.swing.JButton();
+        dateAcquiredField = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        LoanDialog = new javax.swing.JDialog();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        recieverCombo = new javax.swing.JComboBox<>();
+        newRecieverButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        purposeArea = new javax.swing.JTextArea();
+        jLabel32 = new javax.swing.JLabel();
+        locationField = new javax.swing.JTextField();
+        newLoanButton = new javax.swing.JButton();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        loanStartField = new javax.swing.JTextField();
+        loanEndField = new javax.swing.JTextField();
+        newContributeDialog = new javax.swing.JDialog();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        cNameField = new javax.swing.JTextField();
+        cStreet2Field = new javax.swing.JTextField();
+        cStreetField = new javax.swing.JTextField();
+        cCityField = new javax.swing.JTextField();
+        cStateField = new javax.swing.JTextField();
+        cZipField = new javax.swing.JTextField();
+        cEmailField = new javax.swing.JTextField();
+        cOrgField = new javax.swing.JTextField();
+        addContributorButton = new javax.swing.JButton();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -110,22 +190,19 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         exhibitPanel = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         exhibitTable = new javax.swing.JTable();
+        makeLoanButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        NewMenu = new javax.swing.JMenu();
-        addItemMenu = new javax.swing.JMenuItem();
+        newMenu = new javax.swing.JMenu();
+        newCollectionItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        addLoanMenu = new javax.swing.JMenuItem();
-        addAcquisitionMenu = new javax.swing.JMenuItem();
+        newAcquisitionMenu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         addWorkerMenu = new javax.swing.JMenuItem();
         EditMenu = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        editLoanMenu = new javax.swing.JMenuItem();
         ReportsMenu = new javax.swing.JMenu();
         dailyReportButton = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        locationReportButton = new javax.swing.JMenuItem();
         collectionReportButton = new javax.swing.JMenuItem();
 
         InsertCollectionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -219,41 +296,206 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("New Worker Record");
+
+        buttonGroup1.add(staffRadio);
+        staffRadio.setText("Staff");
+        staffRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffRadioActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(volunteerRadio);
+        volunteerRadio.setSelected(true);
+        volunteerRadio.setText("Volunteer");
+        volunteerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volunteerRadioActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Worker Type:");
+
+        jLabel18.setText("SSN:");
+
+        jLabel19.setText("First Name:");
+
+        jLabel20.setText("Last Name:");
+
+        jLabel21.setText("Middle Name:");
+
+        jLabel22.setText("Street:");
+
+        jLabel23.setText("APT/PO Box:");
+
+        jLabel24.setText("City:");
+
+        jLabel25.setText("Zip Code:");
+
+        jLabel26.setText("Age:");
+
+        jLabel27.setText("Gender:");
+
+        createWorkerButton.setText("Create Record");
+        createWorkerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createWorkerButtonActionPerformed(evt);
+            }
+        });
+
+        ssnField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ssnFieldActionPerformed(evt);
+            }
+        });
+
+        fNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fNameFieldActionPerformed(evt);
+            }
+        });
+
+        lNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lNameFieldActionPerformed(evt);
+            }
+        });
+
+        street2Field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                street2FieldActionPerformed(evt);
+            }
+        });
+
+        streetField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                streetFieldActionPerformed(evt);
+            }
+        });
+
+        cityField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityFieldActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(maleRadio);
+        maleRadio.setSelected(true);
+        maleRadio.setText("M");
+
+        buttonGroup2.add(femaleRadio);
+        femaleRadio.setText("F");
+
+        javax.swing.GroupLayout addWorkerDialogLayout = new javax.swing.GroupLayout(addWorkerDialog.getContentPane());
+        addWorkerDialog.getContentPane().setLayout(addWorkerDialogLayout);
+        addWorkerDialogLayout.setHorizontalGroup(
+            addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addWorkerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addGroup(addWorkerDialogLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20))
+                        .addGap(18, 18, 18)
+                        .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(volunteerRadio)
+                            .addComponent(staffRadio)
+                            .addComponent(street2Field)
+                            .addComponent(streetField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(cityField)
+                            .addComponent(zipField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addWorkerDialogLayout.createSequentialGroup()
+                                .addComponent(ssnField)
+                                .addGap(113, 113, 113))
+                            .addGroup(addWorkerDialogLayout.createSequentialGroup()
+                                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(maleRadio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                                    .addComponent(ageField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addComponent(femaleRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                            .addComponent(fNameField)
+                            .addComponent(mNameField)
+                            .addComponent(lNameField, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addWorkerDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createWorkerButton)
+                .addContainerGap())
+        );
+        addWorkerDialogLayout.setVerticalGroup(
+            addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addWorkerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffRadio)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(volunteerRadio)
+                .addGap(23, 23, 23)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ssnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(18, 18, 18)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(fNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(mNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(lNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(streetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(street2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(zipField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addWorkerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(maleRadio)
+                    .addComponent(femaleRadio))
+                .addGap(18, 18, 18)
+                .addComponent(createWorkerButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         Contributor.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        contributorTable.setColumnSelectionAllowed(true);
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, llrpContributorList, contributorTable);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
-        columnBinding.setColumnName("Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${street1}"));
-        columnBinding.setColumnName("Street");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${city}"));
-        columnBinding.setColumnName("City");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${state}"));
-        columnBinding.setColumnName("State");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${zip}"));
-        columnBinding.setColumnName("Zip");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${email}"));
-        columnBinding.setColumnName("Email");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${organization}"));
-        columnBinding.setColumnName("Organization");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
+        contributorTable.setModel(OracleConnection.getContributors());
         contributorTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contributorTableMouseClicked(evt);
@@ -262,27 +504,19 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         jScrollPane3.setViewportView(contributorTable);
         contributorTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Contributor ID:");
-
         jLabel7.setText("OR");
 
-        jButton2.setText("Add New Contributor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        newContributor.setText("Add New Contributor");
+        newContributor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                newContributorActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Use Selected Contributor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        useContributor.setText("Use Selected Contributor");
+        useContributor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                useContributorActionPerformed(evt);
             }
         });
 
@@ -290,37 +524,26 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         Contributor.getContentPane().setLayout(ContributorLayout);
         ContributorLayout.setHorizontalGroup(
             ContributorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
             .addGroup(ContributorLayout.createSequentialGroup()
-                .addGroup(ContributorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContributorLayout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContributorLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(139, 139, 139)
+                .addComponent(useContributor)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(newContributor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ContributorLayout.setVerticalGroup(
             ContributorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContributorLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(ContributorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addGroup(ContributorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(0, 78, Short.MAX_VALUE))
+                    .addComponent(newContributor)
+                    .addComponent(useContributor))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -328,11 +551,21 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
 
         jLabel13.setText("Worker:");
 
-        workerCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        workerCombo.setModel(OracleConnection.getWorkers());
+        workerCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workerComboActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Reason:");
 
-        maintReasonCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        maintReasonCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Routine Cleaning", "Urgent Cleaning", "Routine Repair", "Major Repair" }));
+        maintReasonCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintReasonComboActionPerformed(evt);
+            }
+        });
 
         addMaintRecordButton.setText("Add Record");
         addMaintRecordButton.addActionListener(new java.awt.event.ActionListener() {
@@ -341,6 +574,10 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
             }
         });
 
+        jLabel15.setText("Start Date:");
+
+        jLabel16.setText("End Date:");
+
         javax.swing.GroupLayout MaintDialogLayout = new javax.swing.GroupLayout(MaintDialog.getContentPane());
         MaintDialog.getContentPane().setLayout(MaintDialogLayout);
         MaintDialogLayout.setHorizontalGroup(
@@ -348,37 +585,315 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
             .addGroup(MaintDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
                     .addGroup(MaintDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MaintDialogLayout.createSequentialGroup()
+                        .addGap(0, 15, Short.MAX_VALUE)
                         .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(workerCombo, 0, 175, Short.MAX_VALUE)
-                            .addComponent(maintReasonCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(227, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MaintDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMaintRecordButton)
-                .addContainerGap())
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addMaintRecordButton)
+                            .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(workerCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(maintReasonCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(maintStartField)
+                                .addComponent(maintEndField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35))))
         );
         MaintDialogLayout.setVerticalGroup(
             MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MaintDialogLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(MaintDialogLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(workerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(workerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(maintReasonCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(maintReasonCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(maintStartField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(7, 7, 7)
+                .addGroup(MaintDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maintEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addGap(18, 18, 18)
                 .addComponent(addMaintRecordButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setText("New Acquisiton Record");
+
+        jLabel33.setText("Estimated Value:");
+
+        jLabel34.setText("Price:");
+
+        acquireButton.setText("Add Acquisition");
+
+        jLabel35.setText("Date Acquired:");
+
+        jLabel36.setText("Catalog ID:");
+
+        javax.swing.GroupLayout AcquisitionDialogLayout = new javax.swing.GroupLayout(AcquisitionDialog.getContentPane());
+        AcquisitionDialog.getContentPane().setLayout(AcquisitionDialogLayout);
+        AcquisitionDialogLayout.setHorizontalGroup(
+            AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AcquisitionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AcquisitionDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(acquireButton))
+                    .addGroup(AcquisitionDialogLayout.createSequentialGroup()
+                        .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AcquisitionDialogLayout.createSequentialGroup()
+                                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel34)
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jLabel36))
+                                .addGap(18, 18, 18)
+                                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                    .addComponent(dateAcquiredField)
+                                    .addComponent(estValueField)
+                                    .addComponent(priceField))))
+                        .addGap(0, 213, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        AcquisitionDialogLayout.setVerticalGroup(
+            AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AcquisitionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel28)
+                .addGap(18, 18, 18)
+                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(estValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateAcquiredField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
+                .addGap(18, 18, 18)
+                .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(acquireButton)
+                .addContainerGap())
+        );
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel29.setText("New Loan");
+
+        jLabel30.setText("Recipient:");
+
+        jLabel31.setText("Purpose:");
+
+        recieverCombo.setModel(OracleConnection.getRecipients());
+        recieverCombo.setSelectedIndex(-1);
+
+        newRecieverButton.setText("Add New Recipient");
+
+        purposeArea.setColumns(20);
+        purposeArea.setLineWrap(true);
+        purposeArea.setRows(5);
+        purposeArea.setWrapStyleWord(true);
+        purposeArea.setAutoscrolls(false);
+        jScrollPane2.setViewportView(purposeArea);
+
+        jLabel32.setText("Location:");
+
+        newLoanButton.setText("Create New Loan");
+        newLoanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newLoanButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel46.setText("Start Date:");
+
+        jLabel47.setText("End Date:");
+
+        javax.swing.GroupLayout LoanDialogLayout = new javax.swing.GroupLayout(LoanDialog.getContentPane());
+        LoanDialog.getContentPane().setLayout(LoanDialogLayout);
+        LoanDialogLayout.setHorizontalGroup(
+            LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoanDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoanDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newRecieverButton)
+                            .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(newLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(recieverCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                    .addComponent(locationField)
+                                    .addComponent(loanEndField)
+                                    .addComponent(loanStartField))))
+                        .addGap(55, 55, 55))
+                    .addGroup(LoanDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        LoanDialogLayout.setVerticalGroup(
+            LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoanDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29)
+                .addGap(18, 18, 18)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(recieverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(newRecieverButton)
+                .addGap(18, 18, 18)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoanDialogLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel31))
+                .addGap(18, 18, 18)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loanStartField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loanEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(newLoanButton)
+                .addContainerGap())
+        );
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel37.setText("New Contributor Record");
+
+        jLabel38.setText("Name:");
+
+        jLabel39.setText("Street:");
+
+        jLabel40.setText("PO Box:");
+
+        jLabel41.setText("City:");
+
+        jLabel42.setText("State:");
+
+        jLabel43.setText("Zip Code:");
+
+        jLabel44.setText("Email:");
+
+        jLabel45.setText("Organization:");
+
+        addContributorButton.setText("Add Contributor");
+        addContributorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addContributorButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout newContributeDialogLayout = new javax.swing.GroupLayout(newContributeDialog.getContentPane());
+        newContributeDialog.getContentPane().setLayout(newContributeDialogLayout);
+        newContributeDialogLayout.setHorizontalGroup(
+            newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newContributeDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addGroup(newContributeDialogLayout.createSequentialGroup()
+                        .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel42)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel38)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel45))
+                        .addGap(18, 18, 18)
+                        .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cNameField)
+                            .addComponent(cStreetField)
+                            .addComponent(cStreet2Field)
+                            .addComponent(cCityField)
+                            .addComponent(cZipField)
+                            .addComponent(cStateField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cEmailField)
+                            .addComponent(cOrgField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
+                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newContributeDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addContributorButton)
+                .addContainerGap())
+        );
+        newContributeDialogLayout.setVerticalGroup(
+            newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newContributeDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addGap(18, 18, 18)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(cNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(cStreetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(cStreet2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(cCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(cStateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(cZipField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(cEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newContributeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel45)
+                    .addComponent(cOrgField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(addContributorButton)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -553,67 +1068,58 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
 
         jTabbedPane2.addTab("Exhibit History", exhibitPanel);
 
-        NewMenu.setText("New");
-        NewMenu.setToolTipText("");
-        NewMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                NewMenuMousePressed(evt);
+        makeLoanButton.setText("Add Loan");
+        makeLoanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeLoanButtonActionPerformed(evt);
             }
         });
 
-        addItemMenu.setText("Collection Item");
-        addItemMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addItemMenuActionPerformed(evt);
-            }
-        });
-        NewMenu.add(addItemMenu);
-        NewMenu.add(jSeparator1);
+        newMenu.setText("New");
 
-        addLoanMenu.setText("Loan");
-        addLoanMenu.addActionListener(new java.awt.event.ActionListener() {
+        newCollectionItem.setText("Collection Item");
+        newCollectionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addLoanMenuActionPerformed(evt);
+                newCollectionItemActionPerformed(evt);
             }
         });
-        NewMenu.add(addLoanMenu);
+        newMenu.add(newCollectionItem);
+        newMenu.add(jSeparator1);
 
-        addAcquisitionMenu.setText("Acquisition");
-        addAcquisitionMenu.addActionListener(new java.awt.event.ActionListener() {
+        newAcquisitionMenu.setText("Acquisition");
+        newAcquisitionMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAcquisitionMenuActionPerformed(evt);
+                newAcquisitionMenuActionPerformed(evt);
             }
         });
-        NewMenu.add(addAcquisitionMenu);
-        NewMenu.add(jSeparator2);
+        newMenu.add(newAcquisitionMenu);
+        newMenu.add(jSeparator2);
 
         addWorkerMenu.setText("Worker");
-        NewMenu.add(addWorkerMenu);
+        addWorkerMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addWorkerMenuActionPerformed(evt);
+            }
+        });
+        newMenu.add(addWorkerMenu);
 
-        jMenuBar1.add(NewMenu);
+        jMenuBar1.add(newMenu);
 
         EditMenu.setText("Edit");
 
-        jMenu3.setText("Update");
-
-        jMenuItem7.setText("Loan");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        editLoanMenu.setText("Loan");
+        editLoanMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                editLoanMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
-
-        EditMenu.add(jMenu3);
-
-        jMenu4.setText("Delete");
-        EditMenu.add(jMenu4);
+        EditMenu.add(editLoanMenu);
 
         jMenuBar1.add(EditMenu);
 
         ReportsMenu.setText("Reports");
 
-        dailyReportButton.setText("Daily Report");
+        dailyReportButton.setText("Daily Maintenance Report");
         dailyReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dailyReportButtonActionPerformed(evt);
@@ -621,14 +1127,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         });
         ReportsMenu.add(dailyReportButton);
         ReportsMenu.add(jSeparator3);
-
-        locationReportButton.setText("Item Location Report");
-        locationReportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationReportButtonActionPerformed(evt);
-            }
-        });
-        ReportsMenu.add(locationReportButton);
 
         collectionReportButton.setText("Collection Summary");
         collectionReportButton.addActionListener(new java.awt.event.ActionListener() {
@@ -646,22 +1144,24 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(maintTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(AddMaintButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AddMaintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(makeLoanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addComponent(jTabbedPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,43 +1177,33 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                     .addComponent(AddMaintButton)
                     .addComponent(maintTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(makeLoanButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NewMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewMenuMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NewMenuMousePressed
-
-    private void addLoanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLoanMenuActionPerformed
-        // TODO add your handling code here:
-        Contributor.setSize(700,400);
-        Contributor.setLocationRelativeTo(this);
-        Contributor.setVisible(true);
-    }//GEN-LAST:event_addLoanMenuActionPerformed
-
-    private void addAcquisitionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAcquisitionMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addAcquisitionMenuActionPerformed
-
     private void AddMaintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMaintButtonActionPerformed
         // TODO add your handling code here:
-        
+
         String id = maintTextField.getText();
-        
-        if (id.equals(""))
-        {
+
+        if (id.equals("")) {
             JOptionPane.showMessageDialog(null, "A catalog ID # is required to create a maintenance record.");
-            
+
         } else {
-            MaintDialog.setSize(700,400);
+            MaintDialog.setSize(380, 275);
             MaintDialog.setLocationRelativeTo(this);
             MaintDialog.setVisible(true);
+            
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Calendar cal = Calendar.getInstance();
+            maintStartField.setText(dateFormat.format(cal.getTime()));
+            maintEndField.setText(dateFormat.format(cal.getTime()));
+            savedID = id;
         }
     }//GEN-LAST:event_AddMaintButtonActionPerformed
 
@@ -721,54 +1211,65 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         // TODO add your handling code here:
         //call Daily Report??
         //Path to your .jasper file in your package
-        String reportName = "/Reports/DailyReport.jasper";
-         
+        String reportName = "/Reports/DailyReport2.jasper";
+
         //Get a stream to read the file
         InputStream is = getClass().getResourceAsStream(reportName);
-         
+
         try {
-        //Fill the report with parameter, connection and the stream reader     
+            //Fill the report with parameter, connection and the stream reader     
             JasperPrint jp = JasperFillManager.fillReport(is, null, OracleConnection.connect);
-         
-         //Viewer for JasperReport
-            JasperViewer jv = new JasperViewer(jp,false);
+
+            //Viewer for JasperReport
+            JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_dailyReportButtonActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void newContributorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newContributorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        Contributor.dispose();
+        
+        newContributeDialog.setSize(400, 500);
+        newContributeDialog.setLocationRelativeTo(this);
+        newContributeDialog.setVisible(true);
+    }//GEN-LAST:event_newContributorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void useContributorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useContributorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        String id = savedID;
+        AcquisitionDialog.setSize(525,350);
+        AcquisitionDialog.setLocationRelativeTo(this);
+        AcquisitionDialog.setVisible(true);
+        
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Calendar cal = Calendar.getInstance();
+        dateAcquiredField.setText(dateFormat.format(cal.getTime()));
+        
+    }//GEN-LAST:event_useContributorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editLoanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLoanMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_editLoanMenuActionPerformed
 
     private void collectionReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectionReportButtonActionPerformed
         // TODO add your handling code here:
         //call CollectionReport
         //Path to your .jasper file in your package
         String reportName = "/Reports/CollectionReport.jasper";
-         
+
         //Get a stream to read the file
         InputStream is = getClass().getResourceAsStream(reportName);
-         
+
         try {
-        //Fill the report with parameter, connection and the stream reader     
+            //Fill the report with parameter, connection and the stream reader     
             JasperPrint jp = JasperFillManager.fillReport(is, null, OracleConnection.connect);
-         
-         //Viewer for JasperReport
-            JasperViewer jv = new JasperViewer(jp,false);
+
+            //Viewer for JasperReport
+            JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);
         } catch (JRException ex) {
             ex.printStackTrace();
@@ -777,34 +1278,34 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
 
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
         // TODO add your handling code here:
-        
+
         //1. run a sql statement similar to SELECT * FROM CS342.LLRP_COLLECTION
         //WHERE TYPES LIKE '%it%';
         //2. 
         //set jtabbedpane5
-        String input = searchTextField.getText();
+        String input = searchTextField.getText().toLowerCase();
         System.out.println(input);
         PreparedStatement preparedStatement = null;
-        String sql = "SELECT c.collectID, c.Name, c.Description, c.YearOfOrigin, c.Types, c.Creator, c.Material FROM LLRP_Collection c WHERE (c.name LIKE ? OR c.collectID LIKE ? or c.types LIKE ? or c.yearoforigin LIKE ? or c.description LIKE ? or c.creator LIKE ? or c.material LIKE ?)";
+        String sql = "SELECT c.collectID, c.Name, c.Description, c.YearOfOrigin, c.Types, c.Creator, c.Material FROM LLRP_Collection c WHERE (LOWER(c.name) LIKE ? OR LOWER(c.collectID) LIKE ? or LOWER(c.types) LIKE ? or LOWER(c.yearoforigin) LIKE ? or LOWER(c.description) LIKE ? or LOWER(c.creator) LIKE ? or LOWER(c.material) LIKE ?)";
         Vector items = new Vector();
         Vector column = new Vector();
 
-        try{
+        try {
             preparedStatement = OracleConnection.connect.prepareStatement(sql);
-            
-            for(int i = 1; i < 8; i++){
+
+            for (int i = 1; i < 8; i++) {
                 preparedStatement.setString(i, "%" + input + "%");
             }
             ResultSet rs = preparedStatement.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Vector temp = new Vector();
-                for(int i=1; i < 8; i++) {
+                for (int i = 1; i < 8; i++) {
                     temp.addElement(rs.getString(i));
                 }
                 items.addElement(temp);
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         column.addElement("ID");
@@ -815,24 +1316,19 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         column.addElement("Creator");
         column.addElement("Material");
 
-        DefaultTableModel model = new DefaultTableModel(items, column){boolean[] canEdit = new boolean [] {
-        false,false,false,false,false,false,false};
+        DefaultTableModel model = new DefaultTableModel(items, column) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false};
 
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }};
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
 
         ResultTable.setModel(model);
         ResultTable.removeColumn(ResultTable.getColumnModel().getColumn(0));
         jTabbedPane5.setSelectedIndex(2);
     }//GEN-LAST:event_searchTextFieldActionPerformed
-
-    private void addItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemMenuActionPerformed
-        // trigger Collection JDialog
-        InsertCollectionDialog.setSize(400,550);
-        InsertCollectionDialog.setLocationRelativeTo(this);
-        InsertCollectionDialog.setVisible(true);                
-    }//GEN-LAST:event_addItemMenuActionPerformed
 
     private void AddItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemButtonActionPerformed
         // TODO add your handling code here:
@@ -842,195 +1338,367 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         String type = typeField.getText();
         String creator = creatorField.getText();
         String material = materialField.getText();
-        
+
         OracleConnection.addItem(name, desc, year, type, creator, material);
-                
+
         //close JDialog
         InsertCollectionDialog.dispose();
-        
+
         RecentUpdateTable.setModel(OracleConnection.getFurnitureItems());
         PopularTable.setModel(OracleConnection.getCommonMaintItems());
+        RecentUpdateTable.removeColumn(RecentUpdateTable.getColumnModel().getColumn(0));
+        PopularTable.removeColumn(PopularTable.getColumnModel().getColumn(0));
     }//GEN-LAST:event_AddItemButtonActionPerformed
 
     private void searchTextFieldActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed1
         jTabbedPane5.setSelectedIndex(2);
     }//GEN-LAST:event_searchTextFieldActionPerformed1
 
-    private void locationReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationReportButtonActionPerformed
-        // TODO add your handling code here:
-        //Path to your .jasper file in your package
-        String reportName = "/Reports/OnDisplay.jasper";
-         
-        //Get a stream to read the file
-        InputStream is = getClass().getResourceAsStream(reportName);
-         
-        try {
-        //Fill the report with parameter, connection and the stream reader     
-            JasperPrint jp = JasperFillManager.fillReport(is, null, OracleConnection.connect);
-         
-         //Viewer for JasperReport
-            JasperViewer jv = new JasperViewer(jp,false);
-            jv.setVisible(true);
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_locationReportButtonActionPerformed
-
     private void RecentUpdateTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecentUpdateTableMouseClicked
         // TODO add your handling code here:
         int row = RecentUpdateTable.rowAtPoint(evt.getPoint());//get mouse-selected row
-        Object value = RecentUpdateTable.getModel().getValueAt(row,0);
+        Object value = RecentUpdateTable.getModel().getValueAt(row, 0);
         String str = value.toString();
         int id = Integer.parseInt(str);
+        savedCID = id;
         
         System.out.println(str);
         String sql = "SELECT C.Name, to_char(M.StartDate,'MON-DD-YY'), to_char(M.EndDate,'MON-DD-YY'), L.Purpose, L.Location, R.Name, R.Organization FROM LLRP_COLLECTION C INNER JOIN LLRP_MAKES_A M ON C.COLLECTID = M.COLLECTID INNER JOIN LLRP_LOAN L ON M.LOANID = L.LOANID INNER JOIN LLRP_Recipient R ON L.RecipientID = R.RecipientID WHERE C.COLLECTID = ?";
         String sql2 = "SELECT c.NAME, m.procedures, to_char(p.StartDate,'MON-DD-YY'), to_char(p.EndDate,'MON-DD-YY'), w.fname || ' ' || w.lname AS Name FROM LLRP_COLLECTION c INNER JOIN LLRP_PERFORMED_ON p ON c.collectid = p.collectid INNER JOIN LLRP_MAINTENANCE m ON p.maintainID = m.maintainID INNER JOIN LLRP_DOES d ON d.maintainID = m.maintainID INNER JOIN LLRP_WORKER w ON w.SSN = d.SSN WHERE c.collectID = ?";
         String sql3 = "SELECT c.name, e.concept, e.startdate, e.enddate, d.location FROM LLRP_COLLECTION c INNER JOIN LLRP_DISPLAYED_IN d on c.collectid = d.collectid INNER JOIN LLRP_EXHIBITION e ON d.exhibitID = e.exhibitID WHERE c.collectid = ?";
-     
+
         PreparedStatement ps = null;
         PreparedStatement ps2 = null;
         PreparedStatement ps3 = null;
-        
-        //get info using SQL related to selected item
-        try{
-            ps = OracleConnection.connect.prepareStatement(sql);
-            ps.setInt(1,id);
-            ps2 = OracleConnection.connect.prepareStatement(sql2);
-            ps2.setInt(1,id);
-            ps3 = OracleConnection.connect.prepareStatement(sql3);
-            ps3.setInt(1,id);
 
+        //get info using SQL related to selected item
+        try {
+            ps = OracleConnection.connect.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps2 = OracleConnection.connect.prepareStatement(sql2);
+            ps2.setInt(1, id);
+            ps3 = OracleConnection.connect.prepareStatement(sql3);
+            ps3.setInt(1, id);
+
+        } catch (SQLException e) {
         }
-        catch (SQLException e){
-        }
-        
+
         loanTable.setModel(OracleConnection.getLoan(ps));
         maintTable.setModel(OracleConnection.getMaint(ps2));
         exhibitTable.setModel(OracleConnection.getExhibit(ps3));
-        
+
         maintTextField.setText(str);
     }//GEN-LAST:event_RecentUpdateTableMouseClicked
 
     private void PopularTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PopularTableMouseClicked
         // TODO add your handling code here:
         int row = PopularTable.rowAtPoint(evt.getPoint());//get mouse-selected row
-        Object value = PopularTable.getModel().getValueAt(row,0);
+        Object value = PopularTable.getModel().getValueAt(row, 0);
         String str = value.toString();
         int id = Integer.parseInt(str);
-        
+        savedCID = id;
+
         System.out.println(str);
         String sql = "SELECT C.Name, to_char(M.StartDate,'MON-DD-YY'), to_char(M.EndDate,'MON-DD-YY'), L.Purpose, L.Location, R.Name, R.Organization FROM LLRP_COLLECTION C INNER JOIN LLRP_MAKES_A M ON C.COLLECTID = M.COLLECTID INNER JOIN LLRP_LOAN L ON M.LOANID = L.LOANID INNER JOIN LLRP_Recipient R ON L.RecipientID = R.RecipientID WHERE C.COLLECTID = ?";
         String sql2 = "SELECT c.NAME, m.procedures, to_char(p.StartDate,'MON-DD-YY'), to_char(p.EndDate,'MON-DD-YY'), w.fname || ' ' || w.lname AS Name FROM LLRP_COLLECTION c INNER JOIN LLRP_PERFORMED_ON p ON c.collectid = p.collectid INNER JOIN LLRP_MAINTENANCE m ON p.maintainID = m.maintainID INNER JOIN LLRP_DOES d ON d.maintainID = m.maintainID INNER JOIN LLRP_WORKER w ON w.SSN = d.SSN WHERE c.collectID = ?";
         String sql3 = "SELECT c.name, e.concept, e.startdate, e.enddate, d.location FROM LLRP_COLLECTION c INNER JOIN LLRP_DISPLAYED_IN d on c.collectid = d.collectid INNER JOIN LLRP_EXHIBITION e ON d.exhibitID = e.exhibitID WHERE c.collectid = ?";
-      
+
         PreparedStatement ps = null;
         PreparedStatement ps2 = null;
         PreparedStatement ps3 = null;
-        
-        //get info using SQL related to selected item
-        try{
-            ps = OracleConnection.connect.prepareStatement(sql);
-            ps.setInt(1,id);
-            ps2 = OracleConnection.connect.prepareStatement(sql2);
-            ps2.setInt(1,id);
-            ps3 = OracleConnection.connect.prepareStatement(sql3);
-            ps3.setInt(1,id);
 
+        //get info using SQL related to selected item
+        try {
+            ps = OracleConnection.connect.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps2 = OracleConnection.connect.prepareStatement(sql2);
+            ps2.setInt(1, id);
+            ps3 = OracleConnection.connect.prepareStatement(sql3);
+            ps3.setInt(1, id);
+
+        } catch (SQLException e) {
         }
-        catch (SQLException e){
-        }
-        
+
         loanTable.setModel(OracleConnection.getLoan(ps));
         maintTable.setModel(OracleConnection.getMaint(ps2));
         exhibitTable.setModel(OracleConnection.getExhibit(ps3));
-        
+
         maintTextField.setText(str);
     }//GEN-LAST:event_PopularTableMouseClicked
 
     private void ResultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResultTableMouseClicked
         // TODO add your handling code here:
         int row = ResultTable.rowAtPoint(evt.getPoint());//get mouse-selected row
-        Object value = ResultTable.getModel().getValueAt(row,0);
+        Object value = ResultTable.getModel().getValueAt(row, 0);
         String str = value.toString();
         int id = Integer.parseInt(str);
-        
+        savedCID = id;
+
         System.out.println(str);
         String sql = "SELECT C.Name, to_char(M.StartDate,'MON-DD-YY'), to_char(M.EndDate,'MON-DD-YY'), L.Purpose, L.Location, R.Name, R.Organization FROM LLRP_COLLECTION C INNER JOIN LLRP_MAKES_A M ON C.COLLECTID = M.COLLECTID INNER JOIN LLRP_LOAN L ON M.LOANID = L.LOANID INNER JOIN LLRP_Recipient R ON L.RecipientID = R.RecipientID WHERE C.COLLECTID = ?";
         String sql2 = "SELECT c.NAME, m.procedures, to_char(p.StartDate,'MON-DD-YY'), to_char(p.EndDate,'MON-DD-YY'), w.fname || ' ' || w.lname AS Name FROM LLRP_COLLECTION c INNER JOIN LLRP_PERFORMED_ON p ON c.collectid = p.collectid INNER JOIN LLRP_MAINTENANCE m ON p.maintainID = m.maintainID INNER JOIN LLRP_DOES d ON d.maintainID = m.maintainID INNER JOIN LLRP_WORKER w ON w.SSN = d.SSN WHERE c.collectID = ?";
         String sql3 = "SELECT c.name, e.concept, e.startdate, e.enddate, d.location FROM LLRP_COLLECTION c INNER JOIN LLRP_DISPLAYED_IN d on c.collectid = d.collectid INNER JOIN LLRP_EXHIBITION e ON d.exhibitID = e.exhibitID WHERE c.collectid = ?";
-        
+
         PreparedStatement ps = null;
         PreparedStatement ps2 = null;
         PreparedStatement ps3 = null;
-        
-        //get info using SQL related to selected item
-        try{
-            ps = OracleConnection.connect.prepareStatement(sql);
-            ps.setInt(1,id);
-            ps2 = OracleConnection.connect.prepareStatement(sql2);
-            ps2.setInt(1,id);
-            ps3 = OracleConnection.connect.prepareStatement(sql3);
-            ps3.setInt(1,id);
 
+        //get info using SQL related to selected item
+        try {
+            ps = OracleConnection.connect.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps2 = OracleConnection.connect.prepareStatement(sql2);
+            ps2.setInt(1, id);
+            ps3 = OracleConnection.connect.prepareStatement(sql3);
+            ps3.setInt(1, id);
+
+        } catch (SQLException e) {
         }
-        catch (SQLException e){
-        }
-        
+
         loanTable.setModel(OracleConnection.getLoan(ps));
         maintTable.setModel(OracleConnection.getMaint(ps2));
         exhibitTable.setModel(OracleConnection.getExhibit(ps3));
-        
+
         maintTextField.setText(str);
     }//GEN-LAST:event_ResultTableMouseClicked
 
     private void maintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintTextFieldActionPerformed
-        // TODO add your handling code here:
-        
         //redundant with addMaintButton
     }//GEN-LAST:event_maintTextFieldActionPerformed
 
     private void contributorTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contributorTableMouseClicked
         // TODO add your handling code here:
         int row = contributorTable.rowAtPoint(evt.getPoint());//get mouse-selected row
-        Object value = contributorTable.getModel().getValueAt(row,0);
-        String str = value.toString();
-        int id = Integer.parseInt(str);
-        
-        System.out.println(str);
+        Object value = contributorTable.getModel().getValueAt(row, 0);
+        savedID = value.toString();
+
+        System.out.println(savedID);
     }//GEN-LAST:event_contributorTableMouseClicked
 
     private void addMaintRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintRecordButtonActionPerformed
         // TODO add your handling code here:
+       
+        String name = (String)workerCombo.getSelectedItem();
+        String reason = (String)maintReasonCombo.getSelectedItem();
+        String startDate = maintStartField.getText();
+        String endDate = maintEndField.getText();
         
-        /*
-        String name = nameField.getText();
-        String desc = descripArea.getText();
-        String year = yearField.getText();
-        String type = typeField.getText();
-        String creator = creatorField.getText();
-        String material = materialField.getText();
+        OracleConnection.addMaint(reason, name, startDate, endDate, Integer.parseInt(savedID));
+
+        //close JDialog
+        MaintDialog.dispose();
+        
+        updateEverything();     
+    }//GEN-LAST:event_addMaintRecordButtonActionPerformed
+
+    private void updateEverything() {
         
         RecentUpdateTable.setModel(OracleConnection.getFurnitureItems());
         PopularTable.setModel(OracleConnection.getCommonMaintItems());
-        */
+        RecentUpdateTable.removeColumn(RecentUpdateTable.getColumnModel().getColumn(0));
+        PopularTable.removeColumn(PopularTable.getColumnModel().getColumn(0));
         
-        OracleConnection.addMaint();
-        
-        //close JDialog
-        MaintDialog.dispose();
-    }//GEN-LAST:event_addMaintRecordButtonActionPerformed
+        int id = savedCID; 
 
-    public void tableChanged(TableModelEvent e) {
-    int row = e.getFirstRow();
-    int column = e.getColumn();
-    TableModel model = (TableModel)e.getSource();
-    String columnName = model.getColumnName(column);
-    Object data = model.getValueAt(row, column);
+        String sql = "SELECT C.Name, to_char(M.StartDate,'MON-DD-YY'), to_char(M.EndDate,'MON-DD-YY'), L.Purpose, L.Location, R.Name, R.Organization FROM LLRP_COLLECTION C INNER JOIN LLRP_MAKES_A M ON C.COLLECTID = M.COLLECTID INNER JOIN LLRP_LOAN L ON M.LOANID = L.LOANID INNER JOIN LLRP_Recipient R ON L.RecipientID = R.RecipientID WHERE C.COLLECTID = ?";
+        String sql2 = "SELECT c.NAME, m.procedures, to_char(p.StartDate,'MON-DD-YY'), to_char(p.EndDate,'MON-DD-YY'), w.fname || ' ' || w.lname AS Name FROM LLRP_COLLECTION c INNER JOIN LLRP_PERFORMED_ON p ON c.collectid = p.collectid INNER JOIN LLRP_MAINTENANCE m ON p.maintainID = m.maintainID INNER JOIN LLRP_DOES d ON d.maintainID = m.maintainID INNER JOIN LLRP_WORKER w ON w.SSN = d.SSN WHERE c.collectID = ?";
+        String sql3 = "SELECT c.name, e.concept, e.startdate, e.enddate, d.location FROM LLRP_COLLECTION c INNER JOIN LLRP_DISPLAYED_IN d on c.collectid = d.collectid INNER JOIN LLRP_EXHIBITION e ON d.exhibitID = e.exhibitID WHERE c.collectid = ?";
 
-    // Do something with the data...
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        PreparedStatement ps3 = null;
+
+        //get info using SQL related to selected item
+        try {
+            ps = OracleConnection.connect.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps2 = OracleConnection.connect.prepareStatement(sql2);
+            ps2.setInt(1, id);
+            ps3 = OracleConnection.connect.prepareStatement(sql3);
+            ps3.setInt(1, id);
+
+        } catch (SQLException e) {
+        }
+
+        loanTable.setModel(OracleConnection.getLoan(ps));
+        maintTable.setModel(OracleConnection.getMaint(ps2));
+        exhibitTable.setModel(OracleConnection.getExhibit(ps3));
     }
     
+    private void workerComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workerComboActionPerformed
+    }//GEN-LAST:event_workerComboActionPerformed
+
+    private void maintReasonComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintReasonComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maintReasonComboActionPerformed
+
+    private void staffRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_staffRadioActionPerformed
+
+    private void volunteerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volunteerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volunteerRadioActionPerformed
+
+    private void ssnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssnFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ssnFieldActionPerformed
+
+    private void fNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fNameFieldActionPerformed
+
+    private void lNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lNameFieldActionPerformed
+
+    private void street2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street2FieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_street2FieldActionPerformed
+
+    private void streetFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_streetFieldActionPerformed
+
+    private void cityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityFieldActionPerformed
+
+    
+    private void createWorkerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createWorkerButtonActionPerformed
+        // TODO add your handling code here:
+        String email = "";
+        int salary = 0;
+        boolean volunteer = false;
+        
+        if (volunteerRadio.isSelected()){
+            //ask for email
+            email = JOptionPane.showInputDialog(null, "E-mail Address?");
+            volunteer = true;
+            
+        } else {
+            //ask for salary
+            salary = Integer.parseInt(JOptionPane.showInputDialog(null, "Salary?"));            
+        }
+        
+        char gender = 'F';
+        int ssn = Integer.parseInt(ssnField.getText());
+        String fname = fNameField.getText();
+        String mname = mNameField.getText();
+        String lname = lNameField.getText();
+        String street = streetField.getText();
+        String street2 = street2Field.getText();
+        String city = cityField.getText();
+        String zip = zipField.getText();
+        int age = Integer.parseInt(ageField.getText());
+        if (maleRadio.isSelected())
+            gender = 'M';
+
+        OracleConnection.addWorker(ssn, fname, mname, lname, street, street2, city, zip, age, gender);
+        
+        if(volunteer){
+            OracleConnection.addVolunteer(ssn,email);
+            System.out.println("Added volunteer");
+        } else {
+            //staff
+            OracleConnection.addStaff(ssn,salary);
+            System.out.println("Added staff member");
+        }
+        
+        addWorkerDialog.dispose();
+    }//GEN-LAST:event_createWorkerButtonActionPerformed
+
+    private void addContributorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addContributorButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String name = cNameField.getText();
+        String street = cStreetField.getText();
+        String street2 = cStreet2Field.getText();
+        String city = cCityField.getText();
+        String state = cStateField.getText();
+        String zip = cZipField.getText();
+        String org = cOrgField.getText();
+        String email = cEmailField.getText();
+        
+        OracleConnection.addContributor(name, street, street2, city, state, zip, email, org);
+        newContributeDialog.dispose();
+        
+        Contributor.setSize(700, 400);
+        Contributor.setLocationRelativeTo(this);
+        Contributor.setVisible(true);              
+    }//GEN-LAST:event_addContributorButtonActionPerformed
+
+    private void newLoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newLoanButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String name = (String)recieverCombo.getSelectedItem();
+        String purpose = purposeArea.getText();
+        String location = locationField.getText();
+        String start = loanStartField.getText();
+        String end = loanEndField.getText();
+        
+        OracleConnection.addLoan(purpose, location, name, savedCID, start, end);
+        
+        LoanDialog.dispose();
+        
+        updateEverything();
+    }//GEN-LAST:event_newLoanButtonActionPerformed
+
+    private void makeLoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeLoanButtonActionPerformed
+        // TODO add your handling code here:
+
+        String id = maintTextField.getText();
+
+        if (id.equals("")) {
+            JOptionPane.showMessageDialog(null, "A catalog ID # is required to create a maintenance record.");
+
+        } else {
+            LoanDialog.setSize(400,500);
+            LoanDialog.setLocationRelativeTo(this);
+            LoanDialog.setVisible(true);
+            
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Calendar cal = Calendar.getInstance();
+            loanStartField.setText(dateFormat.format(cal.getTime()));
+            cal.add(Calendar.YEAR, 1); //1 year later
+            loanEndField.setText(dateFormat.format(cal.getTime()));
+            savedCID = Integer.parseInt(id);
+        }
+    }//GEN-LAST:event_makeLoanButtonActionPerformed
+
+    private void newCollectionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCollectionItemActionPerformed
+        // TODO add your handling code here:
+        InsertCollectionDialog.setSize(400,550);
+        InsertCollectionDialog.setLocationRelativeTo(this);
+        InsertCollectionDialog.setVisible(true);  
+    }//GEN-LAST:event_newCollectionItemActionPerformed
+
+    private void newAcquisitionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAcquisitionMenuActionPerformed
+        // TODO add your handling code here:
+        
+        Contributor.setSize(700,400);
+        Contributor.setLocationRelativeTo(this);
+        Contributor.setVisible(true);
+    }//GEN-LAST:event_newAcquisitionMenuActionPerformed
+
+    private void addWorkerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWorkerMenuActionPerformed
+        // TODO add your handling code here:
+        
+        addWorkerDialog.setSize(400,600);
+        addWorkerDialog.setLocationRelativeTo(this);
+        addWorkerDialog.setVisible(true);
+    }//GEN-LAST:event_addWorkerMenuActionPerformed
+
+    public void tableChanged(TableModelEvent e) {
+        int row = e.getFirstRow();
+        int column = e.getColumn();
+        TableModel model = (TableModel) e.getSource();
+        String columnName = model.getColumnName(column);
+        Object data = model.getValueAt(row, column);
+
+        // Do something with the data...
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1068,56 +1736,104 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog AcquisitionDialog;
     private javax.swing.JButton AddItemButton;
     private javax.swing.JButton AddMaintButton;
     private javax.swing.JDialog Contributor;
     private javax.swing.JMenu EditMenu;
     private javax.swing.JDialog InsertCollectionDialog;
+    private javax.swing.JDialog LoanDialog;
     private javax.swing.JPanel LoanHistoryPanel;
     private javax.swing.JDialog MaintDialog;
     private javax.swing.JPanel MaintHistPanel;
-    private javax.swing.JMenu NewMenu;
     private javax.swing.JTable PopularTable;
     private javax.swing.JTable RecentUpdateTable;
     private javax.swing.JMenu ReportsMenu;
     private javax.swing.JTable ResultTable;
-    private javax.swing.JMenuItem addAcquisitionMenu;
-    private javax.swing.JMenuItem addItemMenu;
-    private javax.swing.JMenuItem addLoanMenu;
+    private javax.swing.JButton acquireButton;
+    private javax.swing.JButton addContributorButton;
     private javax.swing.JButton addMaintRecordButton;
+    private javax.swing.JDialog addWorkerDialog;
     private javax.swing.JMenuItem addWorkerMenu;
+    private javax.swing.JTextField ageField;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JTextField cCityField;
+    private javax.swing.JTextField cEmailField;
+    private javax.swing.JTextField cNameField;
+    private javax.swing.JTextField cOrgField;
+    private javax.swing.JTextField cStateField;
+    private javax.swing.JTextField cStreet2Field;
+    private javax.swing.JTextField cStreetField;
+    private javax.swing.JTextField cZipField;
+    private javax.swing.JTextField cityField;
     private javax.swing.JMenuItem collectionReportButton;
     private javax.swing.JTable contributorTable;
+    private javax.swing.JButton createWorkerButton;
     private javax.swing.JTextField creatorField;
     private javax.swing.JMenuItem dailyReportButton;
+    private javax.swing.JTextField dateAcquiredField;
     private javax.swing.JTextArea descripArea;
+    private javax.swing.JMenuItem editLoanMenu;
     private javax.persistence.EntityManager entityManager;
+    private javax.swing.JTextField estValueField;
     private javax.swing.JPanel exhibitPanel;
     private javax.swing.JTable exhibitTable;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTextField fNameField;
+    private javax.swing.JRadioButton femaleRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -1129,7 +1845,8 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField lNameField;
     private java.util.List<MuseumGUI.LlrpCollection> llrpCollectionList;
     private java.util.List<MuseumGUI.LlrpCollection> llrpCollectionList1;
     private javax.persistence.Query llrpCollectionQuery;
@@ -1138,18 +1855,40 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.persistence.Query llrpContributorQuery;
     private java.util.List<MuseumGUI.LlrpMaintenance> llrpMaintenanceList;
     private javax.persistence.Query llrpMaintenanceQuery;
+    private javax.swing.JTextField loanEndField;
+    private javax.swing.JTextField loanStartField;
     private javax.swing.JTable loanTable;
-    private javax.swing.JMenuItem locationReportButton;
+    private javax.swing.JTextField locationField;
+    private javax.swing.JTextField mNameField;
+    private javax.swing.JFormattedTextField maintEndField;
     private javax.swing.JComboBox<String> maintReasonCombo;
+    private javax.swing.JFormattedTextField maintStartField;
     private javax.swing.JTable maintTable;
     private javax.swing.JTextField maintTextField;
+    private javax.swing.JButton makeLoanButton;
+    private javax.swing.JRadioButton maleRadio;
     private javax.swing.JTextField materialField;
     private javax.swing.JTextField nameField;
+    private javax.swing.JMenuItem newAcquisitionMenu;
+    private javax.swing.JMenuItem newCollectionItem;
+    private javax.swing.JDialog newContributeDialog;
+    private javax.swing.JButton newContributor;
+    private javax.swing.JButton newLoanButton;
+    private javax.swing.JMenu newMenu;
+    private javax.swing.JButton newRecieverButton;
+    private javax.swing.JTextField priceField;
+    private javax.swing.JTextArea purposeArea;
+    private javax.swing.JComboBox<String> recieverCombo;
     private javax.swing.JTextField searchTextField;
+    private javax.swing.JFormattedTextField ssnField;
+    private javax.swing.JRadioButton staffRadio;
+    private javax.swing.JTextField street2Field;
+    private javax.swing.JTextField streetField;
     private javax.swing.JTextField typeField;
+    private javax.swing.JButton useContributor;
+    private javax.swing.JRadioButton volunteerRadio;
     private javax.swing.JComboBox<String> workerCombo;
     private javax.swing.JTextField yearField;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JTextField zipField;
     // End of variables declaration//GEN-END:variables
-
 }

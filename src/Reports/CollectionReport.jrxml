@@ -69,7 +69,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="477" splitType="Stretch">
+		<band height="170" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="024df879-30c4-40d2-9727-dc5eeb40fd51"/>
 				<graphicElement>
@@ -104,61 +104,15 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Oldest Item - Year} + " - " + $F{Youngest Item - Year}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="269" y="264" width="244" height="48" uuid="717fe48d-ce4f-4b42-9daa-627ee72fd831"/>
-				<textElement verticalAlignment="Middle">
-					<font size="14"/>
-				</textElement>
-			</textField>
-			<staticText>
-				<reportElement x="36" y="264" width="209" height="48" uuid="2deebb3c-bf7f-4f2f-9381-80afa7397932"/>
-				<textElement verticalAlignment="Middle">
-					<font size="16"/>
-				</textElement>
-				<text><![CDATA[Oldest Item:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="36" y="228" width="209" height="36" uuid="af18e718-e901-42fe-8cdc-cbcdc2fef524"/>
-				<textElement>
-					<font fontName="Serif" size="24"/>
-				</textElement>
-				<text><![CDATA[Trivia:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="36" y="312" width="209" height="48" uuid="a9f93481-c1cd-4e93-b1e7-3fefae6ba618"/>
-				<textElement verticalAlignment="Middle">
-					<font size="16"/>
-				</textElement>
-				<text><![CDATA[Youngest Item:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="269" y="312" width="244" height="48" uuid="6d4c0326-a5a7-461e-ac53-b26c8f8fd946"/>
-				<textElement verticalAlignment="Middle">
-					<font size="14"/>
-				</textElement>
-			</textField>
-			<textField>
-				<reportElement x="269" y="117" width="244" height="51" uuid="2299990f-77b7-41c3-a87c-2ac861dce132"/>
-				<textElement verticalAlignment="Middle">
-					<font size="14"/>
-				</textElement>
-			</textField>
-			<staticText>
-				<reportElement x="36" y="117" width="209" height="51" uuid="af121bbf-5a94-4546-b39f-86bf5a78c1f0"/>
-				<textElement verticalAlignment="Middle">
-					<font size="16"/>
-				</textElement>
-				<text><![CDATA[Average Value of Items]]></text>
-			</staticText>
 			<subreport isUsingCache="true">
-				<reportElement x="36" y="360" width="209" height="51" isRemoveLineWhenBlank="true" uuid="d4e34f10-5362-4686-b56a-621f1a93429e"/>
+				<reportElement x="36" y="117" width="209" height="31" isRemoveLineWhenBlank="true" uuid="d4e34f10-5362-4686-b56a-621f1a93429e"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CollectionReport_subreport1.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="14" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="16434048-4de8-4177-9be0-1f654059546d"/>
 				<graphicElement>
