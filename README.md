@@ -1,3 +1,3 @@
 # Museum Database
 
-A class project. A basic database intended for use by the Collections department of a Museum. GUI constructed in Netbeans.
+A basic database intended for use by the Collections department of a Museum. Inspired by The Homestead Museum, located in City of Industry, CA. GUI constructed in Netbeans.
