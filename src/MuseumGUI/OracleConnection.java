@@ -110,40 +110,6 @@ public class OracleConnection
     }
     
         
-    static void addLoan(String purpose, String location, int recid, int collectid, String start, String end) throws ParseException {
-        
-        int id = getNextLoanID();
-        
-        try{
-            PreparedStatement ps = connect.prepareStatement("Insert into LLRP_Loan Values (?,?,?,?)");
-            ps.setInt(1, id);
-            System.out.println("Next id is: " + id);
-            ps.setString(2, purpose);
-            ps.setString(3, location);
-            ps.setInt(4, recid);
-            
-            ps.executeUpdate();
-        
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); 
-            Date startDate = df.parse(start);
-            Date endDate = df.parse(end);
-            java.sql.Date d1 = new java.sql.Date(startDate.getTime());
-            java.sql.Date d2 = new java.sql.Date(endDate.getTime());
-            
-            ps = connect.prepareStatement("Insert into LLRP_Makes_A Values (?,?,?,?)");
-            ps.setInt(1, collectid);
-            ps.setInt(2, id);
-            ps.setDate(3, d1);
-            ps.setDate(4, d2);
-            ps.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println("Error:" + e);
-        }
-        
-    }
-    
-        
     static void addRecipient(String name, String street1, String street2, String city, String state, String zip, String email, String organization) {
               
         int id = getNextRecID();
@@ -275,6 +241,50 @@ public class OracleConnection
         } catch (SQLException e) {
             System.out.println("Error:" + e);
         }
+    }
+    
+    static void addAcquisition(String value, float price, String contributeID, String cID, String date) {
+        int id = getNextAcquireID();      
+        
+        try{
+            PreparedStatement ps = connect.prepareStatement("Insert into LLRP_Acquisition Values (?,?,?,?)");
+            ps.setInt(1, id);
+            ps.setInt(2, Integer.parseInt(value));
+            ps.setFloat(3, price);
+            ps.setInt(4,Integer.parseInt(cID));
+            
+            ps.executeUpdate();
+            
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            try{
+                Date acquireDate = df.parse(date);
+                java.sql.Date d1 = new java.sql.Date(acquireDate.getTime());
+                ps = connect.prepareStatement("Insert into LLRP_Gains_An Values (?,?,?)");
+                ps.setInt(1,Integer.parseInt(cID));
+                ps.setInt(2,id);
+                ps.setDate(3,d1);
+                ps.executeUpdate();
+            } catch (ParseException e){
+                System.out.println("Error:" + e);
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+        }
+    }
+    
+    static int getNextAcquireID(){
+        int id = -1;
+        try{
+            res = stmt.executeQuery("Select AcquireID from LLRP_ACQUISITION WHERE rownum = 1 order by AcquireID desc");
+            if(res.next()){
+                id = Integer.parseInt(res.getString(1))+1;
+            }
+        }
+        catch(SQLException e){
+            System.out.println("Error:" + e);
+        }
+        return id;
     }
     
     static int getNextCollectID(){

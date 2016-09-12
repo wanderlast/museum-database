@@ -129,14 +129,13 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         acquireButton = new javax.swing.JButton();
         dateAcquiredField = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cIDField = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         LoanDialog = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         recieverCombo = new javax.swing.JComboBox<>();
-        newRecieverButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         purposeArea = new javax.swing.JTextArea();
         jLabel32 = new javax.swing.JLabel();
@@ -165,6 +164,17 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         cEmailField = new javax.swing.JTextField();
         cOrgField = new javax.swing.JTextField();
         addContributorButton = new javax.swing.JButton();
+        editLoanDialog = new javax.swing.JDialog();
+        loanEndField1 = new javax.swing.JTextField();
+        locationField1 = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        purposeArea1 = new javax.swing.JTextArea();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        loanStartField1 = new javax.swing.JTextField();
+        jLabel52 = new javax.swing.JLabel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -198,8 +208,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         newAcquisitionMenu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         addWorkerMenu = new javax.swing.JMenuItem();
-        EditMenu = new javax.swing.JMenu();
-        editLoanMenu = new javax.swing.JMenuItem();
         ReportsMenu = new javax.swing.JMenu();
         dailyReportButton = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -639,6 +647,11 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         jLabel34.setText("Price:");
 
         acquireButton.setText("Add Acquisition");
+        acquireButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acquireButtonActionPerformed(evt);
+            }
+        });
 
         jLabel35.setText("Date Acquired:");
 
@@ -665,7 +678,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                                     .addComponent(jLabel36))
                                 .addGap(18, 18, 18)
                                 .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                    .addComponent(cIDField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                     .addComponent(dateAcquiredField)
                                     .addComponent(estValueField)
                                     .addComponent(priceField))))
@@ -691,7 +704,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                     .addComponent(jLabel35))
                 .addGap(18, 18, 18)
                 .addGroup(AcquisitionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(acquireButton)
@@ -706,9 +719,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         jLabel31.setText("Purpose:");
 
         recieverCombo.setModel(OracleConnection.getRecipients());
-        recieverCombo.setSelectedIndex(-1);
-
-        newRecieverButton.setText("Add New Recipient");
 
         purposeArea.setColumns(20);
         purposeArea.setLineWrap(true);
@@ -738,49 +748,51 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                 .addContainerGap()
                 .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LoanDialogLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(newLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(LoanDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(18, 18, 18)
+                                .addComponent(recieverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55))
+                    .addGroup(LoanDialogLayout.createSequentialGroup()
                         .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newRecieverButton)
-                            .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(newLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29)
+                            .addGroup(LoanDialogLayout.createSequentialGroup()
+                                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
                                 .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(recieverCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                                     .addComponent(locationField)
                                     .addComponent(loanEndField)
                                     .addComponent(loanStartField))))
-                        .addGap(55, 55, 55))
-                    .addGroup(LoanDialogLayout.createSequentialGroup()
-                        .addComponent(jLabel29)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         LoanDialogLayout.setVerticalGroup(
             LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoanDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel29)
-                .addGap(18, 18, 18)
-                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(recieverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addComponent(newRecieverButton)
-                .addGap(18, 18, 18)
                 .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LoanDialogLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(58, 58, 58)
                         .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel32)
-                            .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(recieverCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)))
+                    .addGroup(LoanDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel29)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31))
+                .addGap(18, 18, 18)
+                .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loanStartField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -789,7 +801,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                 .addGroup(LoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loanEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(newLoanButton)
                 .addContainerGap())
         );
@@ -896,6 +908,80 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
                 .addContainerGap())
         );
 
+        purposeArea1.setColumns(20);
+        purposeArea1.setLineWrap(true);
+        purposeArea1.setRows(5);
+        purposeArea1.setWrapStyleWord(true);
+        purposeArea1.setAutoscrolls(false);
+        jScrollPane9.setViewportView(purposeArea1);
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel48.setText("Edit Loan");
+
+        jLabel49.setText("Start Date:");
+
+        jLabel50.setText("End Date:");
+
+        jLabel51.setText("Purpose:");
+
+        jLabel52.setText("Location:");
+
+        javax.swing.GroupLayout editLoanDialogLayout = new javax.swing.GroupLayout(editLoanDialog.getContentPane());
+        editLoanDialog.getContentPane().setLayout(editLoanDialogLayout);
+        editLoanDialogLayout.setHorizontalGroup(
+            editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editLoanDialogLayout.createSequentialGroup()
+                .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editLoanDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel48))
+                    .addGroup(editLoanDialogLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel52)
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel49)
+                            .addComponent(jLabel50))
+                        .addGap(18, 18, 18)
+                        .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loanEndField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editLoanDialogLayout.createSequentialGroup()
+                    .addGap(133, 133, 133)
+                    .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(loanStartField1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                        .addComponent(locationField1))
+                    .addContainerGap(60, Short.MAX_VALUE)))
+        );
+        editLoanDialogLayout.setVerticalGroup(
+            editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editLoanDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel48)
+                .addGap(18, 18, 18)
+                .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel51)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel52)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50)
+                    .addComponent(loanEndField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(editLoanDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editLoanDialogLayout.createSequentialGroup()
+                    .addGap(156, 156, 156)
+                    .addComponent(locationField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(loanStartField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(98, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         RecentUpdateTable.setModel(OracleConnection.getFurnitureItems());
@@ -981,7 +1067,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
             }
         });
 
-        jLabel8.setText("Item ID:");
+        jLabel8.setText("Catalog ID:");
 
         jLabel5.setText("Collection Search:");
 
@@ -1104,18 +1190,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         newMenu.add(addWorkerMenu);
 
         jMenuBar1.add(newMenu);
-
-        EditMenu.setText("Edit");
-
-        editLoanMenu.setText("Loan");
-        editLoanMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editLoanMenuActionPerformed(evt);
-            }
-        });
-        EditMenu.add(editLoanMenu);
-
-        jMenuBar1.add(EditMenu);
 
         ReportsMenu.setText("Reports");
 
@@ -1250,10 +1324,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         dateAcquiredField.setText(dateFormat.format(cal.getTime()));
         
     }//GEN-LAST:event_useContributorActionPerformed
-
-    private void editLoanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLoanMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editLoanMenuActionPerformed
 
     private void collectionReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectionReportButtonActionPerformed
         // TODO add your handling code here:
@@ -1689,6 +1759,19 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
         addWorkerDialog.setVisible(true);
     }//GEN-LAST:event_addWorkerMenuActionPerformed
 
+    private void acquireButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acquireButtonActionPerformed
+        // TODO add your handling code here:
+        String value = estValueField.getText();
+        float price = Float.parseFloat(priceField.getText());
+        String date = dateAcquiredField.getText();
+        String cID = cIDField.getText();
+        String contributeID = savedID;
+        
+        OracleConnection.addAcquisition(value, price, contributeID, cID, date);
+        
+        AcquisitionDialog.dispose();
+    }//GEN-LAST:event_acquireButtonActionPerformed
+
     public void tableChanged(TableModelEvent e) {
         int row = e.getFirstRow();
         int column = e.getColumn();
@@ -1740,7 +1823,6 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JButton AddItemButton;
     private javax.swing.JButton AddMaintButton;
     private javax.swing.JDialog Contributor;
-    private javax.swing.JMenu EditMenu;
     private javax.swing.JDialog InsertCollectionDialog;
     private javax.swing.JDialog LoanDialog;
     private javax.swing.JPanel LoanHistoryPanel;
@@ -1760,6 +1842,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField cCityField;
     private javax.swing.JTextField cEmailField;
+    private javax.swing.JTextField cIDField;
     private javax.swing.JTextField cNameField;
     private javax.swing.JTextField cOrgField;
     private javax.swing.JTextField cStateField;
@@ -1774,7 +1857,7 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JMenuItem dailyReportButton;
     private javax.swing.JTextField dateAcquiredField;
     private javax.swing.JTextArea descripArea;
-    private javax.swing.JMenuItem editLoanMenu;
+    private javax.swing.JDialog editLoanDialog;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JTextField estValueField;
     private javax.swing.JPanel exhibitPanel;
@@ -1823,7 +1906,12 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1840,25 +1928,28 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lNameField;
-    private java.util.List<MuseumGUI.LlrpCollection> llrpCollectionList;
-    private java.util.List<MuseumGUI.LlrpCollection> llrpCollectionList1;
+    private java.util.List<UnderConstruction.LlrpCollection> llrpCollectionList;
+    private java.util.List<UnderConstruction.LlrpCollection> llrpCollectionList1;
     private javax.persistence.Query llrpCollectionQuery;
     private javax.persistence.Query llrpCollectionQuery1;
-    private java.util.List<MuseumGUI.LlrpContributor> llrpContributorList;
+    private java.util.List<UnderConstruction.LlrpContributor> llrpContributorList;
     private javax.persistence.Query llrpContributorQuery;
-    private java.util.List<MuseumGUI.LlrpMaintenance> llrpMaintenanceList;
+    private java.util.List<UnderConstruction.LlrpMaintenance> llrpMaintenanceList;
     private javax.persistence.Query llrpMaintenanceQuery;
     private javax.swing.JTextField loanEndField;
+    private javax.swing.JTextField loanEndField1;
     private javax.swing.JTextField loanStartField;
+    private javax.swing.JTextField loanStartField1;
     private javax.swing.JTable loanTable;
     private javax.swing.JTextField locationField;
+    private javax.swing.JTextField locationField1;
     private javax.swing.JTextField mNameField;
     private javax.swing.JFormattedTextField maintEndField;
     private javax.swing.JComboBox<String> maintReasonCombo;
@@ -1875,9 +1966,9 @@ public class MuseumDB extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JButton newContributor;
     private javax.swing.JButton newLoanButton;
     private javax.swing.JMenu newMenu;
-    private javax.swing.JButton newRecieverButton;
     private javax.swing.JTextField priceField;
     private javax.swing.JTextArea purposeArea;
+    private javax.swing.JTextArea purposeArea1;
     private javax.swing.JComboBox<String> recieverCombo;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JFormattedTextField ssnField;

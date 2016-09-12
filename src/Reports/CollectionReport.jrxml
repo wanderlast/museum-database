@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c4c8a69-aee4-4d7f-9cbf-df7a3bae3934">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="95"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -69,7 +69,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="170" splitType="Stretch">
+		<band height="501" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="024df879-30c4-40d2-9727-dc5eeb40fd51"/>
 				<graphicElement>
@@ -109,6 +109,31 @@ FROM
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CollectionReport_subreport1.jasper"]]></subreportExpression>
 			</subreport>
+			<staticText>
+				<reportElement x="36" y="177" width="290" height="31" forecolor="#006600" uuid="5770369e-c60e-4e7e-9471-38b6b0dcc7ce"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Featured Item from Our Collection:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="409" width="104" height="35" uuid="90350782-fdc7-4aaf-9d59-fc1f832a5ec8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Polar Bear Rug]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="444" width="397" height="33" uuid="617cbffa-52c1-48ac-bce4-14c863c8ae0a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Displayed in La Casa Nueva, this authentic polar bear hide rug was considered the height of fashion in the 1920's.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="59" y="222" width="417" height="265" uuid="edb110fa-dcc8-422b-bf1f-7b4d572f1cea"/>
+				<imageExpression><![CDATA["C:\\Users\\Defenestrate\\Documents\\NetBeansProjects\\MuseumDB\\src\\Reports\\792311.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>
