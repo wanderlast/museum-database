@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2da77c8-9933-4811-832c-6433e16be528">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<subDataset name="dataset1" uuid="351e85df-6fdc-4c8d-af75-9cb87b8a71cc"/>
+	<queryString>
+		<![CDATA[SELECT
+     LLRP_WORKER."FNAME"||' '||LLRP_WORKER."LNAME" AS LLRP_WORKER_NAME,
+     LLRP_COLLECTION."NAME" AS LLRP_COLLECTION_NAME,
+     LLRP_MAINTENANCE."PROCEDURES" AS LLRP_MAINTENANCE_PROCEDURES,
+     LLRP_PERFORMED_ON."STARTDATE" AS LLRP_PERFORMED_ON_STARTDATE,
+     LLRP_PERFORMED_ON."ENDDATE" AS LLRP_PERFORMED_ON_ENDDATE,
+     LLRP_COLLECTION."DESCRIPTION" AS LLRP_COLLECTION_DESCRIPTION
+FROM
+     "CS342"."LLRP_MAINTENANCE" LLRP_MAINTENANCE INNER JOIN "CS342"."LLRP_PERFORMED_ON" LLRP_PERFORMED_ON ON LLRP_MAINTENANCE."MAINTAINID" = LLRP_PERFORMED_ON."MAINTAINID"
+     INNER JOIN "CS342"."LLRP_COLLECTION" LLRP_COLLECTION ON LLRP_PERFORMED_ON."COLLECTID" = LLRP_COLLECTION."COLLECTID"
+     INNER JOIN "CS342"."LLRP_DOES" LLRP_DOES ON LLRP_MAINTENANCE."MAINTAINID" = LLRP_DOES."MAINTAINID"
+     INNER JOIN "CS342"."LLRP_WORKER" LLRP_WORKER ON LLRP_DOES."SSN" = LLRP_WORKER."SSN"
+WHERE
+     LLRP_PERFORMED_ON."STARTDATE" >= TRUNC(sysdate)
+  OR LLRP_PERFORMED_ON."ENDDATE" >= TRUNC(sysdate)]]>
+	</queryString>
+	<field name="LLRP_WORKER_NAME" class="java.lang.String"/>
+	<field name="LLRP_COLLECTION_NAME" class="java.lang.String"/>
+	<field name="LLRP_MAINTENANCE_PROCEDURES" class="java.lang.String"/>
+	<field name="LLRP_PERFORMED_ON_STARTDATE" class="java.sql.Timestamp"/>
+	<field name="LLRP_PERFORMED_ON_ENDDATE" class="java.sql.Timestamp"/>
+	<field name="LLRP_COLLECTION_DESCRIPTION" class="java.lang.String"/>
+	<group name="LLRP_COLLECTION_NAME">
+		<groupExpression><![CDATA[$F{LLRP_COLLECTION_NAME}]]></groupExpression>
+		<groupHeader>
+			<band height="52">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="0" width="506" height="24" forecolor="#006600" uuid="5484c466-914a-4711-9122-557923a9f249"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LLRP_COLLECTION_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="24" width="100" height="15" uuid="e21794e7-bea1-4696-a1c9-e9ceef1cdfca"/>
+					<textElement verticalAlignment="Top">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Description:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="24" width="336" height="15" uuid="31d64921-b984-4615-93a5-efbe72594818"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LLRP_COLLECTION_DESCRIPTION}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-1" y="39" width="437" height="1" uuid="582b32e3-1916-4359-a2ee-c36329164c8a"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="LLRP_MAINTENANCE_PROCEDURES" keepTogether="true">
+		<groupExpression><![CDATA[$F{LLRP_MAINTENANCE_PROCEDURES}]]></groupExpression>
+		<groupHeader>
+			<band height="52">
+				<textField>
+					<reportElement style="SubTitle" x="99" y="0" width="334" height="15" uuid="a79efc2c-06e4-44c7-8709-aa46481a31e0"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LLRP_MAINTENANCE_PROCEDURES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="99" y="15" width="334" height="20" uuid="7ed72ded-2f03-4369-9053-708a065d4265"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LLRP_WORKER_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="15" uuid="61233258-f9b9-4b98-ab77-0c341d344408"/>
+					<textElement verticalAlignment="Top">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Procedure:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="15" width="100" height="20" uuid="22eb73d4-459d-4711-8307-64462311d1f3"/>
+					<textElement verticalAlignment="Top">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Worker:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="LLRP_PERFORMED_ON_STARTDATE">
+		<groupExpression><![CDATA[$F{LLRP_PERFORMED_ON_STARTDATE}]]></groupExpression>
+	</group>
+	<group name="LLRP_PERFORMED_ON_ENDDATE">
+		<groupExpression><![CDATA[$F{LLRP_PERFORMED_ON_ENDDATE}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<image>
+				<reportElement x="11" y="10" width="88" height="86" uuid="462b0996-ea53-4ab7-ba90-25fcf5491436"/>
+				<imageExpression><![CDATA["C:\\Users\\Defenestrate\\Pictures\\homestead\\6b26d69f2391ea00b9465f7c750cf5a5.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="111" y="41" width="322" height="33" uuid="fa9ea61f-5433-4cf3-b1e1-1c79661cabb0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Daily Maintenance Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="111" y="74" width="228" height="22" uuid="19cd0d72-3117-47e5-805d-9bff50ee8da5"/>
+				<text><![CDATA[Maintenance Performed On:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="341" y="74" width="214" height="22" uuid="da126728-8490-454c-834d-f1af9a3b6b1e"/>
+				<textElement>
+					<font size="18" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="ba7c3ee1-254e-4a6f-bb3e-eb8b2d02e09c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="44" width="555" height="1" uuid="e7e1ce87-f7d7-4846-b9b6-605783a27eb7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="f6240e18-2b69-4fc1-a849-c9595b249924"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="3baa8ea1-0a16-4d28-86da-9b0c1b7d34fe"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="7f0ca54d-2333-456d-9128-a61f49b43bee"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="449ef452-bc3c-4c87-a7e3-7cbe5f5fde4e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     LLRP_COLLECTION."COLLECTID" AS LLRP_COLLECTION_COLLECTID,
+     LLRP_COLLECTION."NAME" AS LLRP_COLLECTION_NAME,
+     LLRP_COLLECTION."DESCRIPTION" AS LLRP_COLLECTION_DESCRIPTION,
+     LLRP_COLLECTION."YEAROFORIGIN" AS LLRP_COLLECTION_YEAROFORIGIN,
+     LLRP_COLLECTION."TYPES" AS LLRP_COLLECTION_TYPES,
+     LLRP_COLLECTION."CREATOR" AS LLRP_COLLECTION_CREATOR,
+     LLRP_COLLECTION."MATERIAL" AS LLRP_COLLECTION_MATERIAL,
+     LLRP_DISPLAYED_IN."COLLECTID" AS LLRP_DISPLAYED_IN_COLLECTID,
+     LLRP_DISPLAYED_IN."EXHIBITID" AS LLRP_DISPLAYED_IN_EXHIBITID,
+     LLRP_DISPLAYED_IN."STARTDATE" AS LLRP_DISPLAYED_IN_STARTDATE,
+     LLRP_DISPLAYED_IN."ENDDATE" AS LLRP_DISPLAYED_IN_ENDDATE,
+     LLRP_DISPLAYED_IN."LOCATION" AS LLRP_DISPLAYED_IN_LOCATION,
+     LLRP_EXHIBITION."EXHIBITID" AS LLRP_EXHIBITION_EXHIBITID,
+     LLRP_EXHIBITION."CONCEPT" AS LLRP_EXHIBITION_CONCEPT,
+     LLRP_EXHIBITION."STARTDATE" AS LLRP_EXHIBITION_STARTDATE,
+     LLRP_EXHIBITION."ENDDATE" AS LLRP_EXHIBITION_ENDDATE
+FROM
+     "CS342"."LLRP_COLLECTION" LLRP_COLLECTION INNER JOIN "CS342"."LLRP_DISPLAYED_IN" LLRP_DISPLAYED_IN ON LLRP_COLLECTION."COLLECTID" = LLRP_DISPLAYED_IN."COLLECTID"
+     INNER JOIN "CS342"."LLRP_EXHIBITION" LLRP_EXHIBITION ON LLRP_DISPLAYED_IN."EXHIBITID" = LLRP_EXHIBITION."EXHIBITID"]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<image>
+				<reportElement x="21" y="12" width="88" height="86" uuid="95a4faf3-73d5-4c6b-953b-86b6651e7f84"/>
+				<imageExpression><![CDATA["C:\\Users\\Defenestrate\\Pictures\\homestead\\6b26d69f2391ea00b9465f7c750cf5a5.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="123" y="73" width="406" height="22" uuid="46928e32-e264-4281-a716-aced04a2ddbd"/>
+				<text><![CDATA[Currently On Display at The Homestead Museum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="123" y="36" width="274" height="37" forecolor="#000000" uuid="10f75793-837c-48fc-8e44-10ffeb4f7f17"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Exhibit Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="34038cf6-bcaa-4ebd-a422-f312f80cdcee"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="194" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="92d58019-fb17-47f1-bdda-ed57a26f63b9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="69fb83f4-e0d1-498d-aceb-51f07de66585"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="e6633763-2e9b-4ae8-afa1-0b8902c75993"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="c561a69a-bf28-4815-bbe3-60bc119f28dd"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="26add682-8958-4f15-83e2-07687c3d4ee4"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
